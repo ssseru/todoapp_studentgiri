@@ -1,28 +1,22 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+const Navbar = () => {
+  return (
+    <nav className="nav-wrapper" style={{ backgroundColor: "#3e89d5" }}>
+      <div className="container">
+        <h1>ToDoApp</h1>
+        <p>Created with</p>
+        <ul className="right">
+          <li>
+            <Link to="/home">Tasks</Link>
+          </li>
+          <li>
+            <Link to="/addtask">Add New Task</Link>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  );
+};
 
-export default class Navbar extends Component {
-  render() {
-    return (
-      <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
-        <Link to="/" className="navbar-brand">
-          Tasks
-        </Link>
-        <div className="collapse navbar-collapse">
-          <ul className="navbar-nav mr-auto">
-            <li className="navbar-item">
-              <Link to="/" className="nav-link">
-                Tasks
-              </Link>
-            </li>
-            <li className="navbar-item">
-              <Link to="/addtask" className="nav-link">
-                Add New Task
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    );
-  }
-}
+export default Navbar;

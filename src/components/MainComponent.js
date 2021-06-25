@@ -10,8 +10,8 @@ import "../App.css";
 export default function Main() {
   return (
     <div>
+      <Navbar />
       <Switch>
-        <Navbar />
         <Route exact path="/home" component={Home} />
         <Route path="/addtask" component={Addtask} />
         <Redirect to="/home" />
