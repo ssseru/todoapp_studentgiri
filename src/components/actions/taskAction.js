@@ -1,4 +1,4 @@
-import { FETCH_TASKS, NEW_TASK } from "./types";
+import { FETCH_TASKS, NEW_TASK, REMOVE_TASK } from "./types";
 
 export const fetchTasks = () => (dispatch) => {
   console.log("Fetch Tasks action");
@@ -26,6 +26,22 @@ export const createTask = (taskData) => (dispatch) => {
     .then((task) =>
       dispatch({
         type: NEW_TASK,
+        payload: task,
+      })
+    );
+};
+
+export const deleteTask = (id) => (dispatch) => {
+  // console.log("Delete Task action");
+  // console.log(id);
+  // console.log(`http://localhost:5000/tasks/${id}`);
+  fetch("http://localhost:5000/tasks/" + id, {
+    method: "DELETE",
+  })
+    .then((res) => res.json())
+    .then((task) =>
+      dispatch({
+        type: REMOVE_TASK,
         payload: task,
       })
     );

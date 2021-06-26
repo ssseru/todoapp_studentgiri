@@ -1,4 +1,4 @@
-import { FETCH_TASKS, NEW_TASK } from "../actions/types";
+import { FETCH_TASKS, NEW_TASK, REMOVE_TASK } from "../actions/types";
 
 const initialState = {
   tasks: [],
@@ -15,6 +15,12 @@ export default function (state = initialState, action) {
       };
     case NEW_TASK:
       console.log("New Task reducer");
+      return {
+        ...state,
+        task: action.payload,
+      };
+    case REMOVE_TASK:
+      console.log("Remove Task reducer");
       return {
         ...state,
         task: action.payload,

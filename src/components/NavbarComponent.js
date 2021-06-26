@@ -5,7 +5,8 @@ const Navbar = () => {
     <nav className="nav-wrapper" style={{ backgroundColor: "#3e89d5" }}>
       <div className="container">
         <h1>ToDoApp</h1>
-        <p>Created with</p>
+        <h4>Created with MERN Stack</h4>
+        <p>Used redux for state management</p>
         <ul className="right">
           <li>
             <Link to="/home">Tasks</Link>

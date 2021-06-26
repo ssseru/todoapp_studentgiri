@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchTasks } from "./actions/taskAction";
+import { fetchTasks, deleteTask } from "./actions/taskAction";
 
 class Home extends Component {
   componentWillMount() {
@@ -14,11 +14,23 @@ class Home extends Component {
     }
   }
 
+  handleRemove = (id) => {
+    this.props.deleteTask(id);
+  };
+
   render() {
     const tasksList = this.props.tasks.map((task) => (
       <div key={task.id}>
         <h3>{task.task}</h3>
         <p>{task.description}</p>
+        <p>{task._id}</p>
+        <button
+          onClick={() => {
+            this.handleRemove(task._id);
+          }}
+        >
+          Mark as completed
+        </button>
       </div>
     ));
     return (
@@ -33,6 +45,7 @@ class Home extends Component {
 
 Home.propTypes = {
   fetchTasks: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired,
   tasks: PropTypes.array.isRequired,
   newTask: PropTypes.object,
 };
@@ -42,4 +55,4 @@ const mapStateToProps = (state) => ({
   newTask: state.tasks.task,
 });
 
-export default connect(mapStateToProps, { fetchTasks })(Home);
+export default connect(mapStateToProps, { fetchTasks, deleteTask })(Home);
