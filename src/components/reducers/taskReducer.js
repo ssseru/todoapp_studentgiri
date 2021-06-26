@@ -5,7 +5,7 @@ const initialState = {
   task: {},
 };
 
-export default function (state = initialState, action) {
+export default function foo(state = initialState, action) {
   switch (action.type) {
     case FETCH_TASKS:
       console.log("Fetch Task reducer");
