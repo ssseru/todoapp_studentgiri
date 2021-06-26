@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchTasks, deleteTask } from "./actions/taskAction";
+import { Card, Button } from "reactstrap";
 
 class Home extends Component {
   componentWillMount() {
@@ -14,30 +15,45 @@ class Home extends Component {
     }
   }
 
+  componentDidUpdate() {
+    this.props.fetchTasks();
+  }
+
   handleRemove = (id) => {
     this.props.deleteTask(id);
   };
 
   render() {
     const tasksList = this.props.tasks.map((task) => (
-      <div key={task.id}>
-        <h3>{task.task}</h3>
-        <p>{task.description}</p>
-        <p>{task._id}</p>
-        <button
-          onClick={() => {
-            this.handleRemove(task._id);
-          }}
-        >
-          Mark as completed
-        </button>
+      <div className="container" key={task.id}>
+        <Card style={{ background: "#d1c4e9" }}>
+          <div>
+            Task title:<b> {task.task}</b>
+            <br />
+            Description: {task.description}
+            <br />
+          </div>
+          <Button
+            onClick={() => {
+              this.handleRemove(task._id);
+            }}
+          >
+            Delete task
+          </Button>
+        </Card>
+        <br />
       </div>
     ));
     return (
-      <div>
-        {/* {console.log(this.props.tasks)} */}
-        <h1>Tasks</h1>
-        {tasksList}
+      <div className="container">
+        {tasksList.length > 0 ? (
+          <h1>
+            TasksList:
+            {tasksList}
+          </h1>
+        ) : (
+          <h3>No tasks added</h3>
+        )}
       </div>
     );
   }

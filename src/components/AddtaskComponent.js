@@ -3,6 +3,16 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createTask } from "./actions/taskAction";
 
+import {
+  Button,
+  FormGroup,
+  Label,
+  Input,
+  Form,
+  Breadcrumb,
+  BreadcrumbItem,
+} from "reactstrap";
+
 class Addtask extends Component {
   constructor(props) {
     super(props);
@@ -32,32 +42,34 @@ class Addtask extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Add A NEW Task</h1>
-        <form onSubmit={this.onSubmit}>
-          <div>
-            <label>Task Title: </label>
-            <br />
-            <input
+      <div className="container">
+        <h1>Add a new Task</h1>
+        <Form onSubmit={this.onSubmit}>
+          <FormGroup>
+            <Label for="task">Task title:</Label>
+            <Input
               type="text"
+              id="task"
               name="task"
-              onChange={this.onChange}
               value={this.state.task}
-            />
-          </div>
-          <br />
-          <div>
-            <label>Description: </label>
-            <br />
-            <textarea
-              name="description"
               onChange={this.onChange}
-              value={this.state.description}
             />
-          </div>
+          </FormGroup>
+          <FormGroup>
+            <Label for="description">Description:</Label>
+            <Input
+              type="textbox"
+              name="description"
+              id="description"
+              value={this.state.description}
+              onChange={this.onChange}
+            />
+          </FormGroup>
           <br />
-          <button type="submit">Submit</button>
-        </form>
+          <Button type="submit" value="submit" color="primary">
+            Add task
+          </Button>
+        </Form>
       </div>
     );
   }
