@@ -30,6 +30,9 @@ class Addtask extends Component {
     };
 
     this.props.createTask(task);
+    this.props.history.push({
+      pathname: "/home",
+    });
   }
 
   render() {
